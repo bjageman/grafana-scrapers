@@ -1,0 +1,38 @@
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# Oil Prices: Mon, Wed, Fri at 9:00 AM
+0 9 * * 1,3,5 python3 -u /app/scripts/oil_prices.py
+
+# Metal Prices: Mon, Wed, Fri at 8:00 AM
+0 8 * * 1,3,5 python3 -u /app/scripts/metal_prices.py
+
+# WAQI (Air Quality): Every 15 minutes
+*/15 * * * * python3 -u /app/scripts/waqi.py
+
+# Pollen (Google): Daily at 9:30 AM
+30 9 * * * python3 -u /app/scripts/pollen_google.py
+
+# Fitbit token refresh: Every 6 hours at minute 45 (proactive, before 8h expiry)
+45 */6 * * * python3 -u /app/scripts/fitbit_refresh_token.py
+
+# Fitbit VO2 & Activities: Every hour at minute 15
+15 */1 * * * python3 -u /app/scripts/fitbit.py
+
+# Yahoo Finance: Every hour at minute 0
+0 */1 * * * python3 -u /app/scripts/yahoo.py
+
+# FRED (Federal Reserve Economic Data): Every hour at minute 0
+0 */1 * * * cd /app/scripts/fred && python3 -u main.py
+
+# IMF Data: Every hour at minute 0
+0 */1 * * * python3 -u /app/scripts/imf.py
+
+# Daylio Import: Daily at 4:05 AM
+5 4 * * * python3 -u /app/scripts/daylio.py
+
+# Hevy Workouts Export: Every hour at minute 0
+0 */1 * * * python3 -u /app/scripts/hevy.py
+
+# Google Health: Every hour at minute 15
+15 */1 * * * python3 -u /app/scripts/google_health.py

@@ -1,0 +1,6 @@
+requests
+influxdb-client
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+git+https://github.com/remuzel/hevy-api.git
